@@ -5,56 +5,55 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.sample.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    lateinit var result: TextView;
-    lateinit var numberOne: EditText
-    lateinit var numberTwo: EditText
+    //    to activate static viewById
+//    - declare binding : layout file name and add blinding text
+//    - on oncreate fun add binding = ActivityMainBinding.inflate(layoutInflater)
+//    - setContentView(blinding.root)
+    lateinit var binding: ActivityMainBinding
     var resultValue = 0;
-    var num1 = 0;
-    var num2 = 0;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+//        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root;
+        setContentView(view);
 
-        numberOne = findViewById(R.id.numberOne);
-        numberTwo = findViewById(R.id.numberTwo);
-        result = findViewById(R.id.result);
-        val addBtn: Button = findViewById(R.id.addBtn);
-        val subBtn: Button = findViewById(R.id.subBtn);
-        val mulBtn: Button = findViewById(R.id.mulBtn);
-        val divBtn: Button = findViewById(R.id.divBtn);
 
-        addBtn.setOnClickListener {
-            result.setText(
+
+        binding.addBtn.setOnClickListener {
+            binding.result.setText(
                 add(
-                    numberOne.text.toString().toInt(),
-                    numberTwo.text.toString().toInt()
+                    binding.numberOne.text.toString().toInt(),
+                    binding.numberTwo.text.toString().toInt()
                 ).toString()
             );
 
         }
-        subBtn.setOnClickListener {
-            result.setText(
+        binding.subBtn.setOnClickListener {
+            binding.result.setText(
                 sub(
-                    numberOne.text.toString().toInt(),
-                    numberTwo.text.toString().toInt()
+                    binding.numberOne.text.toString().toInt(),
+                    binding.numberTwo.text.toString().toInt()
                 ).toString()
             );
         }
-        mulBtn.setOnClickListener {
-            result.setText(
+        binding.mulBtn.setOnClickListener {
+            binding.result.setText(
                 mul(
-                    numberOne.text.toString().toInt(),
-                    numberTwo.text.toString().toInt()
+                    binding.numberOne.text.toString().toInt(),
+                    binding.numberTwo.text.toString().toInt()
                 ).toString()
             );
         }
-        divBtn.setOnClickListener {
-            result.setText(
+        binding.divBtn.setOnClickListener {
+            binding.result.setText(
                 div(
-                    numberOne.text.toString().toInt(),
-                    numberTwo.text.toString().toInt()
+                    binding.numberOne.text.toString().toInt(),
+                    binding.numberTwo.text.toString().toInt()
                 ).toString()
             );
         }
